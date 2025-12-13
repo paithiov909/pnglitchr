@@ -1,0 +1,10 @@
+^pnglitchr\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^README\.Rmd$
+
+^src/rust/\.cargo$
+^src/rust/etc$
+^src/rust/target$
+^src/Makevars$
+^src/Makevars\.win$
