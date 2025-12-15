@@ -332,16 +332,41 @@ fn pgltc_random_copy(bytes: savvy::RawSexp, times: savvy::NumericScalar) -> savv
 /// Remove filters
 ///
 /// @param bytes PNG image data
-/// @param from,to Scan line index
+/// @param from Scan line index
+/// @param lines Number of scan lines to be updated
 /// @returns PNG image data
 /// @noRd
 #[savvy]
-fn pgltc_remove_filter(bytes: savvy::RawSexp, from: savvy::NumericScalar, to: savvy::NumericScalar) -> savvy::Result<savvy::Sexp> {
+fn pgltc_remove_filter(bytes: savvy::RawSexp, from: savvy::NumericScalar, lines: savvy::NumericScalar) -> savvy::Result<savvy::Sexp> {
     let mut png = raw_to_png_glitch(bytes).map_err(|_| savvy_err!("Failed to parse PNG data"))?;
     let from = from.as_i32()? as u32;
-    let to = to.as_i32()? as u32;
+    let lines = lines.as_i32()? as u32;
 
-    png.remove_filter_from(from, to);
+    png.remove_filter_from(from, lines);
+    let mut buf = vec![];
+    png.encode(&mut buf)
+        .map_err(|_| savvy_err!("Failed to encode PNG data"))?;
+
+    let out = savvy::OwnedRawSexp::try_from(buf)?;
+    Ok(out.into())
+}
+
+/// Transpose
+///
+/// @param bytes PNG image data
+/// @param src Scan line index
+/// @param dst Scan line index
+/// @param lines Number of scan lines to be updated
+/// @returns PNG image data
+/// @noRd
+#[savvy]
+fn pgltc_transpose(bytes: savvy::RawSexp, src: savvy::NumericScalar, dst: savvy::NumericScalar, lines: savvy::NumericScalar) -> savvy::Result<savvy::Sexp> {
+    let mut png = raw_to_png_glitch(bytes).map_err(|_| savvy_err!("Failed to parse PNG data"))?;
+    let src = src.as_i32()? as u32;
+    let dst = dst.as_i32()? as u32;
+    let lines = lines.as_i32()? as u32;
+
+    png.transpose(src, dst, lines);
     let mut buf = vec![];
     png.encode(&mut buf)
         .map_err(|_| savvy_err!("Failed to encode PNG data"))?;
@@ -353,12 +378,13 @@ fn pgltc_remove_filter(bytes: savvy::RawSexp, from: savvy::NumericScalar, to: sa
 /// Apply filter
 ///
 /// @param bytes PNG image data
-/// @param filter_type Filter type. 0: None, 1: Sub, 2: Up, 3: Average, 4: Paeth.
-/// @param from,to Scan line index
+/// @param filter_type Filter type. 0: None, 1: Sub, 2: Up, 3: Average, 4: Paeth
+/// @param from Scan line index
+/// @param lines Number of scan lines to be updated
 /// @returns PNG image data
 /// @noRd
 #[savvy]
-fn pgltc_apply_filter(bytes: savvy::RawSexp, filter_type: savvy::NumericScalar, from: savvy::NumericScalar, to: savvy::NumericScalar) -> savvy::Result<savvy::Sexp> {
+fn pgltc_apply_filter(bytes: savvy::RawSexp, filter_type: savvy::NumericScalar, from: savvy::NumericScalar, lines: savvy::NumericScalar) -> savvy::Result<savvy::Sexp> {
     let mut png = raw_to_png_glitch(bytes).map_err(|_| savvy_err!("Failed to parse PNG data"))?;
     let filter_type = match filter_type.as_i32()? {
         0 => FilterType::None,
@@ -369,9 +395,9 @@ fn pgltc_apply_filter(bytes: savvy::RawSexp, filter_type: savvy::NumericScalar, 
         _ => FilterType::None,
     };
     let from = from.as_i32()? as u32;
-    let to = to.as_i32()? as u32;
+    let lines = lines.as_i32()? as u32;
 
-    png.apply_filter_from(filter_type, from, to);
+    png.apply_filter_from(filter_type, from, lines);
     let mut buf = vec![];
     png.encode(&mut buf)
         .map_err(|_| savvy_err!("Failed to encode PNG data"))?;
@@ -383,7 +409,7 @@ fn pgltc_apply_filter(bytes: savvy::RawSexp, filter_type: savvy::NumericScalar, 
 /// Count scanlines
 ///
 /// @param bytes PNG image data
-/// @returns Number of scanlines
+/// @returns Total number of scanlines
 /// @noRd
 #[savvy]
 fn pgltc_count_scanlines(bytes: savvy::RawSexp) -> savvy::Result<savvy::Sexp> {

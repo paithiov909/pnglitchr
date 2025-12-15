@@ -35,9 +35,9 @@ remotes::install_github("paithiov909/pnglitchr")
 The following code shows how to glitch an image.
 The original image looks like this:
 
-![original image](inst/images/barplot.png)
+![Original image](inst/images/barplot.png)
 
-```{r glitch}
+```{r glitch, fig.cap="Glitched image"}
 pkgload::load_all(export_all = FALSE)
 
 fp <- system.file("images/barplot.png", package = "pnglitchr")

@@ -5,6 +5,7 @@
 \alias{count_scanlines}
 \alias{glitch_replace}
 \alias{glitch_remove}
+\alias{glitch_transpose}
 \alias{glitch_apply}
 \title{Create a glitched PNG image}
 \usage{
@@ -12,28 +13,32 @@ count_scanlines(x)
 
 glitch_replace(x, times)
 
-glitch_remove(x, from, to)
+glitch_remove(x, from, lines)
+
+glitch_transpose(x, src, dst, lines)
 
 glitch_apply(
   x,
   from,
-  to,
+  lines,
   filter_type = c("none", "sub", "up", "average", "paeth")
 )
 }
 \arguments{
 \item{x}{A character string specifying the path to a PNG file
-or a raw vector containing a PNG image data.}
+or a raw vector containing PNG image data.}
 
 \item{times}{An integer specifying the number of times to copy.}
 
-\item{from, to}{Scan line index.}
+\item{from, src, dst}{Scan line index.}
+
+\item{lines}{Number of scan lines to be updated.}
 
 \item{filter_type}{Filter type.
 One of "none", "sub", "up", "average", "paeth".}
 }
 \value{
-A raw vector containing a glitched PNG image data.
+A raw vector containing glitched PNG image data.
 }
 \description{
 Create a glitched PNG image
@@ -44,6 +49,7 @@ The following functions are available:
 \item \code{count_scanlines()}: Returns the total number of scan lines in the PNG image.
 \item \code{glitch_replace()}: Replaces the scan lines randomly.
 \item \code{glitch_remove()}: Removes filter from the scan lines.
+\item \code{glitch_transpose()}: Transposes some scan lines from \code{src} to \code{dst}.
 \item \code{glitch_apply()}: Applies a specified filter to the scan lines.
 }
 }

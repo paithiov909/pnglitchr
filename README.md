@@ -27,8 +27,8 @@ The following code shows how to glitch an image. The original image
 looks like this:
 
 <figure>
-<img src="inst/images/barplot.png" alt="original image" />
-<figcaption aria-hidden="true">original image</figcaption>
+<img src="inst/images/barplot.png" alt="Original image" />
+<figcaption aria-hidden="true">Original image</figcaption>
 </figure>
 
 ``` r
@@ -46,7 +46,14 @@ grid::grid.newpage()
 grid::grid.raster(nr, interpolate = FALSE)
 ```
 
-<img src="man/figures/README-glitch-1.png" width="100%" />
+<div class="figure">
+
+<img src="man/figures/README-glitch-1.png" alt="Glitched image" width="100%" />
+<p class="caption">
+Glitched image
+</p>
+
+</div>
 
 ## License
 

@@ -40,18 +40,19 @@ NULL
 #' Apply filter
 #'
 #' @param bytes PNG image data
-#' @param filter_type Filter type. 0: None, 1: Sub, 2: Up, 3: Average, 4: Paeth.
-#' @param from,to Scan line index
+#' @param filter_type Filter type. 0: None, 1: Sub, 2: Up, 3: Average, 4: Paeth
+#' @param from Scan line index
+#' @param lines Number of scan lines to be updated
 #' @returns PNG image data
 #' @noRd
-`pgltc_apply_filter` <- function(`bytes`, `filter_type`, `from`, `to`) {
-  .Call(savvy_pgltc_apply_filter__impl, `bytes`, `filter_type`, `from`, `to`)
+`pgltc_apply_filter` <- function(`bytes`, `filter_type`, `from`, `lines`) {
+  .Call(savvy_pgltc_apply_filter__impl, `bytes`, `filter_type`, `from`, `lines`)
 }
 
 #' Count scanlines
 #'
 #' @param bytes PNG image data
-#' @returns Number of scanlines
+#' @returns Total number of scanlines
 #' @noRd
 `pgltc_count_scanlines` <- function(`bytes`) {
   .Call(savvy_pgltc_count_scanlines__impl, `bytes`)
@@ -70,11 +71,24 @@ NULL
 #' Remove filters
 #'
 #' @param bytes PNG image data
-#' @param from,to Scan line index
+#' @param from Scan line index
+#' @param lines Number of scan lines to be updated
 #' @returns PNG image data
 #' @noRd
-`pgltc_remove_filter` <- function(`bytes`, `from`, `to`) {
-  .Call(savvy_pgltc_remove_filter__impl, `bytes`, `from`, `to`)
+`pgltc_remove_filter` <- function(`bytes`, `from`, `lines`) {
+  .Call(savvy_pgltc_remove_filter__impl, `bytes`, `from`, `lines`)
+}
+
+#' Transpose
+#'
+#' @param bytes PNG image data
+#' @param src Scan line index
+#' @param dst Scan line index
+#' @param lines Number of scan lines to be updated
+#' @returns PNG image data
+#' @noRd
+`pgltc_transpose` <- function(`bytes`, `src`, `dst`, `lines`) {
+  .Call(savvy_pgltc_transpose__impl, `bytes`, `src`, `dst`, `lines`)
 }
 
 
