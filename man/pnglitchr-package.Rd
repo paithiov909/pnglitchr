@@ -6,7 +6,7 @@
 \alias{pnglitchr-package}
 \title{pnglitchr: PNG Glitching in R}
 \description{
-What the package does (one paragraph).
+Offers a thin wrapper around \url{https://github.com/chikoski/png-glitch}, a library to glitch PNG images.
 }
 \author{
 \strong{Maintainer}: Akiru Kato \email{paithiov909@gmail.com}

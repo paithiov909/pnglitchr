@@ -4,7 +4,8 @@ Version: 0.0.1
 Authors@R: c(
     person("Akiru", "Kato", , "paithiov909@gmail.com", role = c("aut", "cre")),
     person("N. Shimizu", role = "cph"))
-Description: What the package does (one paragraph).
+Description: Offers a thin wrapper around <https://github.com/chikoski/png-glitch>,
+    a library to glitch PNG images.
 License: MIT + file LICENSE
 Suggests:
     fastpng,
