@@ -4,7 +4,7 @@
 \name{pnglitchr-package}
 \alias{pnglitchr}
 \alias{pnglitchr-package}
-\title{pnglitchr: What the Package Does (One Line, Title Case)}
+\title{pnglitchr: PNG Glitching in R}
 \description{
 What the package does (one paragraph).
 }

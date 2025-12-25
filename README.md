@@ -9,7 +9,7 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-pnglitchr is an R package that offers a light wrapper around
+pnglitchr is an R package that offers a thin wrapper around
 [chikoski/png-glitch](https://github.com/chikoski/png-glitch), a library
 to glitch PNG images.
 

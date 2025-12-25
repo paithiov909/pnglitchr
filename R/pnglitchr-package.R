@@ -8,6 +8,8 @@
 
 #' Create a glitched PNG image
 #'
+#' Creates glitched PNG image data.
+#'
 #' @details
 #' The following functions are available:
 #' * `count_scanlines()`: Returns the total number of scan lines in the PNG image.

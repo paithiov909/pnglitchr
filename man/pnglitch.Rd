@@ -41,7 +41,7 @@ One of "none", "sub", "up", "average", "paeth".}
 A raw vector containing glitched PNG image data.
 }
 \description{
-Create a glitched PNG image
+Creates glitched PNG image data.
 }
 \details{
 The following functions are available:

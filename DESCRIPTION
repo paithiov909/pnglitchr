@@ -1,6 +1,6 @@
 Package: pnglitchr
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: PNG Glitching in R
+Version: 0.0.1
 Authors@R: c(
     person("Akiru", "Kato", , "paithiov909@gmail.com", role = c("aut", "cre")),
     person("N. Shimizu", role = "cph"))
