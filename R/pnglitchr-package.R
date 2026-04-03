@@ -21,6 +21,7 @@
 #' @param x A character string specifying the path to a PNG file
 #' or a raw vector containing PNG image data.
 #' @param times An integer specifying the number of times to copy.
+#' @param seed An integer specifying the seed for the random number generator.
 #' @param from,src,dst Scan line index.
 #' @param lines Number of scan lines to be updated.
 #' @param filter_type Filter type.
@@ -41,11 +42,11 @@ count_scanlines <- function(x) {
 
 #' @rdname pnglitch
 #' @export
-glitch_replace <- function(x, times) {
+glitch_replace <- function(x, times, seed = sample.int(1e9, 1)) {
   if (!is.raw(x)) {
     x <- readBin(x, "raw", n = file.info(x)$size)
   }
-  pgltc_random_copy(x, times)
+  pgltc_random_copy(x, as.integer(times), as.integer(seed))
 }
 
 #' @rdname pnglitch
@@ -54,7 +55,7 @@ glitch_remove <- function(x, from, lines) {
   if (!is.raw(x)) {
     x <- readBin(x, "raw", n = file.info(x)$size)
   }
-  pgltc_remove_filter(x, from, lines)
+  pgltc_remove_filter(x, as.integer(from), as.integer(lines))
 }
 
 #' @rdname pnglitch
@@ -63,7 +64,7 @@ glitch_transpose <- function(x, src, dst, lines) {
   if (!is.raw(x)) {
     x <- readBin(x, "raw", n = file.info(x)$size)
   }
-  pgltc_transpose(x, src, dst, lines)
+  pgltc_transpose(x, as.integer(src), as.integer(dst), as.integer(lines))
 }
 
 #' @rdname pnglitch
@@ -79,5 +80,5 @@ glitch_apply <- function(
   }
   filter <- match.arg(filter_type)
   value <- switch(filter, none = 0, sub = 1, up = 2, average = 3, paeth = 4)
-  pgltc_apply_filter(x, from, lines, value)
+  pgltc_apply_filter(x, as.integer(from), as.integer(lines), as.integer(value))
 }

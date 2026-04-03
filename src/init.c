@@ -1,7 +1,12 @@
 
+// clang-format sorts includes unless SortIncludes: Never. However, the ordering
+// does matter here. So, we need to disable clang-format for safety.
+
+// clang-format off
 #include <stdint.h>
 #include <Rinternals.h>
 #include <R_ext/Parse.h>
+// clang-format on
 
 #include "rust/api.h"
 
@@ -44,8 +49,8 @@ SEXP savvy_pgltc_count_scanlines__impl(SEXP c_arg__bytes) {
     return handle_result(res);
 }
 
-SEXP savvy_pgltc_random_copy__impl(SEXP c_arg__bytes, SEXP c_arg__times) {
-    SEXP res = savvy_pgltc_random_copy__ffi(c_arg__bytes, c_arg__times);
+SEXP savvy_pgltc_random_copy__impl(SEXP c_arg__bytes, SEXP c_arg__times, SEXP c_arg__seed) {
+    SEXP res = savvy_pgltc_random_copy__ffi(c_arg__bytes, c_arg__times, c_arg__seed);
     return handle_result(res);
 }
 
@@ -63,7 +68,7 @@ SEXP savvy_pgltc_transpose__impl(SEXP c_arg__bytes, SEXP c_arg__src, SEXP c_arg_
 static const R_CallMethodDef CallEntries[] = {
     {"savvy_pgltc_apply_filter__impl", (DL_FUNC) &savvy_pgltc_apply_filter__impl, 4},
     {"savvy_pgltc_count_scanlines__impl", (DL_FUNC) &savvy_pgltc_count_scanlines__impl, 1},
-    {"savvy_pgltc_random_copy__impl", (DL_FUNC) &savvy_pgltc_random_copy__impl, 2},
+    {"savvy_pgltc_random_copy__impl", (DL_FUNC) &savvy_pgltc_random_copy__impl, 3},
     {"savvy_pgltc_remove_filter__impl", (DL_FUNC) &savvy_pgltc_remove_filter__impl, 3},
     {"savvy_pgltc_transpose__impl", (DL_FUNC) &savvy_pgltc_transpose__impl, 4},
     {NULL, NULL, 0}
@@ -73,6 +78,6 @@ void R_init_pnglitchr(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 
-    // Functions for initialzation, if any.
+    // Functions for initialization, if any.
 
 }

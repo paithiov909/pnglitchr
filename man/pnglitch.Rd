@@ -11,7 +11,7 @@
 \usage{
 count_scanlines(x)
 
-glitch_replace(x, times)
+glitch_replace(x, times, seed = sample.int(1e+09, 1))
 
 glitch_remove(x, from, lines)
 
@@ -29,6 +29,8 @@ glitch_apply(
 or a raw vector containing PNG image data.}
 
 \item{times}{An integer specifying the number of times to copy.}
+
+\item{seed}{An integer specifying the seed for the random number generator.}
 
 \item{from, src, dst}{Scan line index.}
 

@@ -64,8 +64,8 @@ NULL
 #' @param times Number of times to copy
 #' @returns PNG image data
 #' @noRd
-`pgltc_random_copy` <- function(`bytes`, `times`) {
-  .Call(savvy_pgltc_random_copy__impl, `bytes`, `times`)
+`pgltc_random_copy` <- function(`bytes`, `times`, `seed`) {
+  .Call(savvy_pgltc_random_copy__impl, `bytes`, `times`, `seed`)
 }
 
 #' Remove filters
