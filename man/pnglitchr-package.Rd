@@ -11,9 +11,14 @@ Offers a thin wrapper around \url{https://github.com/chikoski/png-glitch}, a lib
 \author{
 \strong{Maintainer}: Akiru Kato \email{paithiov909@gmail.com}
 
+Authors:
+\itemize{
+  \item Akiru Kato \email{paithiov909@gmail.com}
+}
+
 Other contributors:
 \itemize{
-  \item N. Shimizu [copyright holder]
+  \item N. Shimizu (Author of the original 'png-glitch' library) [copyright holder]
 }
 
 }
